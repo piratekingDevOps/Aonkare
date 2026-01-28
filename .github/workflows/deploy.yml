@@ -1,0 +1,51 @@
+name: Deploy Aonkare React App to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'aonkare-app/**'   # Only trigger if files in the app change
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: |
+          cd aonkare-app
+          npm install
+
+      # 4. Build React app
+      - name: Build React app
+        run: |
+          cd aonkare-app
+          npm run build
+
+      # 5. Deploy to GitHub Pages (clean old build)
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./aonkare-app/build
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          keep_files: false   # Deletes old files before deploying new build
+
