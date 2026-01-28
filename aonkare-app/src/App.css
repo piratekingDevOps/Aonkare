@@ -1,0 +1,32 @@
+body { font-family: Arial, sans-serif; background:#f9f9f4; margin:0; }
+h1,h2,h3,h4,p { margin:0; padding:0; }
+
+header {
+  background: #4CAF50; color: white; padding:20px 0; text-align:center;
+}
+header nav a { margin: 0 15px; color:white; font-weight:bold; }
+header .cart-btn { background:#dcedc8; border:none; border-radius:5px; padding:5px 10px; cursor:pointer; margin-left:15px; }
+
+.hero {
+  text-align:center; padding:80px 20px;
+  background: url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?fit=crop&w=1600&q=80') center/cover no-repeat;
+  color:white;
+}
+
+.products { max-width:1200px; margin:0 auto; padding:60px 20px; }
+.product-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px; }
+.product-card { background:white; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+.product-card img { width:100%; height:200px; object-fit:cover; }
+.product-card .info { padding:20px; }
+.product-card button { background:#4CAF50; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; }
+.product-card button:hover { background:#43a047; }
+
+/* Cart Popup */
+.cart-popup {
+  position:fixed; top:20px; right:20px; width:300px; max-height:400px; background:#fff; border:2px solid #4CAF50;
+  border-radius:10px; box-shadow:0 6px 15px rgba(0,0,0,0.2); padding:20px; display:flex; flex-direction:column; z-index:1000; overflow-y:auto;
+}
+.cart-popup h4 { color:#4CAF50; text-align:center; }
+.cart-popup ul { list-style:none; padding:0; }
+.cart-popup ul li { padding:5px 0; border-bottom:1px solid #eee; }
+.cart-popup .close-cart { margin-top:15px; background:#4CAF50; color:white; border:none; border-radius:5px; padding:10px; cursor:pointer; }
