@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Aonkare/static/css/main.5aa1cb51.css",
+    "main.js": "/Aonkare/static/js/main.657b3fc5.js",
+    "index.html": "/Aonkare/index.html",
+    "main.5aa1cb51.css.map": "/Aonkare/static/css/main.5aa1cb51.css.map",
+    "main.657b3fc5.js.map": "/Aonkare/static/js/main.657b3fc5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5aa1cb51.css",
+    "static/js/main.657b3fc5.js"
+  ]
+}
