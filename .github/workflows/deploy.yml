@@ -8,9 +8,7 @@ on:
       - 'aonkare-app/**'   # Only trigger if files in the app change
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 jobs:
   build-and-deploy:
@@ -45,7 +43,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./aonkare-app/build
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
           keep_files: false   # Deletes old files before deploying new build
-
+          force_orphan: true
