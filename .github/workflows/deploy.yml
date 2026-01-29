@@ -4,37 +4,46 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'aonkare-app/**'
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: npm
 
       - name: Install dependencies
-        run: |
-          cd aonkare-app
-          npm install --no-audit --no-fund
+        run: npm install
+        working-directory: aonkare-app
 
-      - name: Build
-        run: |
-          cd aonkare-app
-          npm run build
+      - name: Build React app
+        run: npm run build
+        working-directory: aonkare-app
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload build folder
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./aonkare-app/build
-          force_orphan: true
+          path: aonkare-app/build
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
 
