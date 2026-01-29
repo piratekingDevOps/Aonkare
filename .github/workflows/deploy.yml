@@ -5,43 +5,36 @@ on:
     branches:
       - main
     paths:
-      - 'aonkare-app/**'   # Only trigger if files in the app change
+      - 'aonkare-app/**'
 
 permissions:
   contents: write
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout repository
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # 2. Setup Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: 18
 
-      # 3. Install dependencies
       - name: Install dependencies
         run: |
           cd aonkare-app
-          npm install
+          npm install --no-audit --no-fund
 
-      # 4. Build React app
-      - name: Build React app
+      - name: Build
         run: |
           cd aonkare-app
           npm run build
 
-      # 5. Deploy to GitHub Pages (clean old build)
-      - name: Deploy to GitHub Pages
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./aonkare-app/build
-          keep_files: false   # Deletes old files before deploying new build
           force_orphan: true
+
