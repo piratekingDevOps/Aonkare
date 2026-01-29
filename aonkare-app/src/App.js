@@ -1,25 +1,28 @@
-import React, { useState } from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Products from './components/Products';
-import Cart from './components/Cart';
-import './App.css';
+import { useState } from "react";
+import Header from "./components/Header";
+import Filters from "./components/Filters";
+import Products from "./components/Products";
+import "./App.css";
 
 function App() {
-  const [cartItems, setCartItems] = useState([]);
-  const [showCart, setShowCart] = useState(false);
+  const [cart, setCart] = useState([]);
 
-  const addToCart = (product) => setCartItems([...cartItems, product]);
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+  };
 
   return (
-    <div>
-      <Header toggleCart={() => setShowCart(!showCart)} cartCount={cartItems.length} />
-      <Hero />
-      <Products addToCart={addToCart} />
-      {showCart && <Cart items={cartItems} closeCart={() => setShowCart(false)} />}
-    </div>
+    <>
+      <Header cartCount={cart.length} />
+      <div className="layout">
+        <Filters />
+        <main>
+          <h2>Best Sellers in Ayurveda</h2>
+          <Products addToCart={addToCart} />
+        </main>
+      </div>
+    </>
   );
 }
 
 export default App;
-// test deploy

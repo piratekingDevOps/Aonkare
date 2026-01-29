@@ -1,0 +1,10 @@
+.filters {
+  width: 220px;
+  background: white;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.filters h3 {
+  margin-top: 0;
+}

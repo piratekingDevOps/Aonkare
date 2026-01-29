@@ -1,16 +1,16 @@
-import React from 'react';
+import "./ProductCard.css";
 
-function ProductCard({ product, addToCart }) {
+export default function ProductCard({ product, addToCart }) {
   return (
     <div className="product-card">
       <img src={product.image} alt={product.name} />
-      <div className="info">
-        <h4>{product.name}</h4>
-        <p>{product.description}</p>
-        <button onClick={() => addToCart(product.name)}>Add to Cart</button>
+      <h4>{product.name}</h4>
+      <div className="rating">⭐⭐⭐⭐☆ (1,234)</div>
+      <div className="price">
+        ₹{product.price}
+        <span className="strike">₹{product.price + 300}</span>
       </div>
+      <button onClick={() => addToCart(product)}>Add to Cart</button>
     </div>
   );
 }
-
-export default ProductCard;

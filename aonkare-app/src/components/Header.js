@@ -1,17 +1,18 @@
-import React from 'react';
+import "./Header.css";
 
-function Header({ toggleCart, cartCount }) {
+export default function Header({ cartCount }) {
   return (
-    <header>
-      <h1>Aonkare</h1>
-      <nav>
-        <a href="#home">Home</a>
-        <a href="#products">Products</a>
-        <a href="#contact">Contact</a>
-        <button className="cart-btn" onClick={toggleCart}>Cart ({cartCount})</button>
-      </nav>
+    <header className="header">
+      <div className="logo">Aonkare</div>
+      <input
+        className="search"
+        placeholder="Search Ayurvedic medicines, oils, supplements..."
+      />
+      <div className="nav">
+        <span>Account</span>
+        <span>Orders</span>
+        <span className="cart">Cart ({cartCount})</span>
+      </div>
     </header>
   );
 }
-
-export default Header;
